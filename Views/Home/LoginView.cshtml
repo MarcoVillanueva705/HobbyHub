@@ -1,0 +1,25 @@
+﻿@model LoginUser
+
+<h1>Login to Hobby Hub</h1>    
+
+<form action="login" method="POST">
+
+    <span asp-validation-for="Email"></span>
+    <label asp-for ="Email">Email</label> 
+    <input asp-for="Email">
+
+    <span asp-validation-for="UserName"></span>
+    <label asp-for ="UserName">User Name</label> 
+    <input asp-for="UserName">
+    
+    <span asp-validation-for="Password"></span>
+    <label asp-for="Password">Password</label>
+    <input asp-for="Password">
+
+    <br>
+    <button type="submit">Log In</button>
+    
+    <br>
+    <a href="/">Go Back</a>
+
+</form>

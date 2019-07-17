@@ -1,0 +1,48 @@
+<h1>Welcome to the Hobby Hub!</h1>
+Already registered? <a href="loginuser">Log In</a>
+
+@model User;
+
+<div class="container">
+    
+    <form class='big_form' asp-controller="Home" asp-action="register" method="POST">
+
+        <div class="form-group">
+            <span asp-validation-for="FirstName"></span>
+            <label asp-for="FirstName">First Name</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" asp-for='FirstName' value="">
+        </div>
+
+        <div class="form-group">
+            <span asp-validation-for="LastName"></span>
+            <label asp-for="LastName">Last Name</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" asp-for='LastName' value="">
+        </div>
+
+        <div class="form-group">
+            <span asp-validation-for="UserName"></span>
+            <label asp-for="UserName">User Name</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" asp-for='UserName' value="">
+        </div>
+
+        <div class="form-group">
+            <span asp-validation-for="Email"></span>
+            <label asp-for="Email">Email</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" asp-for='Email' value="">
+        </div>
+
+        <div class="form-group">
+            <span asp-validation-for="Password"></span>
+            <label asp-for="Password">Password</label>
+            <input type="password" class="form-control" id="exampleFormControlInput1" asp-for='Password' value="">
+        </div>
+
+        <div class="form-group">
+            <span asp-validation-for="PasswordConfirmation"></span>
+            <label asp-for="PasswordConfirmation">Confirm Password</label>
+            <input type="password" class="form-control" id="exampleFormControlInput1" asp-for='PasswordConfirmation' value="">
+        </div>
+
+        <button type="submit" value='submit' class="btn btn-primary">Sign up Now</button>
+    </form>
+</div>

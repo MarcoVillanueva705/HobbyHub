@@ -1,0 +1,33 @@
+@model Hobby
+
+<h1>Check out this hobby!</h1>
+<a href="/dashboard">View All Hobbies</a>
+<a href="/logout">logout</a>
+
+<h2><i><b>@Model.Name</i></b></h2>
+
+<h2 style = "text-decoration: underline">Description</h2>
+<p>@Model.Description</p>
+
+<h2 style = "text-decoration: underline">@Model.Name Enthusiasts</h2>
+
+@{
+    @foreach(var fan in @ViewBag.CurrentHobby.Fan){
+        <p>@fan.User.FirstName</p>
+        
+        
+    }
+}
+
+
+<h2 style = "text-decoration: underline">Become an Enthusiast!</h2>
+    <b><a href ="/join/@ViewBag.CurrentHobby.HobbyId" class="Button">Add to Hobbies</a></b>
+
+    @{
+        if(@ViewBag.UserId == @ViewBag.CurrentHobby.UserId){
+            <a href="/delete/@ViewBag.CurrentHobby.HobbyId">Delete</a>
+        } 
+    }
+
+<img src="~/images/hobbies.jpg" />
+    

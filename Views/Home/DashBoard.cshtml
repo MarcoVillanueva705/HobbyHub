@@ -1,0 +1,35 @@
+@model Hobby
+
+    <a href="/logout">Log Out</a><br><br>
+
+<h1>Hobbies</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Enthusiasts</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        
+        @foreach (var hobby in @ViewBag.Allhobbies)
+    {
+        <tr>
+        <th><a href="ShowOneHobby/@hobby.HobbyId">@hobby.Name</a></th>
+        <td align = "left">@hobby.Fan.Count</td>
+        
+        </tr>
+    }
+    </tbody>
+</table>
+
+<b><a href="/createHobby">Create a Hobby</a></b>
+
+<img src="~/images/rafting.jpg" />
+
+
+
+
+
+
