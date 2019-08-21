@@ -204,5 +204,23 @@ namespace HobbyHub.Controllers
             return RedirectToAction("loginuser");
         }
     }
+
+     [HttpPost("hobby/edit/{hobbyId}/post")]
+        public IActionResult PostEditHobby(int hobbyId, Hobby hobby)
+        {
+            int? userId = HttpContext.Session.GetInt32("logged_in_id");
+            if (userId is null) return RedirectToAction("LoginReg");
+
+            if(ModelState.IsValid)
+            {
+                Hobby editedHobby = dbContext.Hobbies.FirstOrDefault(h => h.HobbyId == hobbyId);
+                editedHobby.Name = hobby.Name;
+                editedHobby.Description = hobby.Description;
+                dbContext.SaveChanges();
+                return RedirectToAction("Hobbies");
+            }
+
+            return View("EditHobby");
+        }
 }
 
