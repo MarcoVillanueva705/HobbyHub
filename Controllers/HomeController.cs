@@ -184,6 +184,23 @@ namespace HobbyHub.Controllers
             return RedirectToAction("Dashboard");
         }
 
+        [HttpGet("hobby/edit/{hobbyId}")]
+        public IActionResult EditHobby(int hobbyId)
+        {
+            if(HttpContext.Session.GetInt32("ID") == null)
+            {
+                return RedirectToAction("Register");
+            }
+            int? sessionUser = HttpContext.Session.GetInt32("ID");
+            Hobby CurrentHobby = dbContext.hobbies
+                .Include(h => h.Fan)
+                    .ThenInclude(f => f.User)
+                        .SingleOrDefault(h => h.HobbyId == hobbyId);
+                    ViewBag.CurrentHobby = CurrentHobby;
+                    ViewBag.UserId = HttpContext.Session.GetInt32("ID");
+            return View(CurrentHobby);
+        }
+
         [HttpGet("delete/{hobbyId}")]
         public IActionResult Delete(int hobbyId)
         {
@@ -203,24 +220,6 @@ namespace HobbyHub.Controllers
             HttpContext.Session.Clear();
             return RedirectToAction("loginuser");
         }
-    }
-
-     [HttpPost("hobby/edit/{hobbyId}/post")]
-        public IActionResult PostEditHobby(int hobbyId, Hobby hobby)
-        {
-            int? userId = HttpContext.Session.GetInt32("logged_in_id");
-            if (userId is null) return RedirectToAction("LoginReg");
-
-            if(ModelState.IsValid)
-            {
-                Hobby editedHobby = dbContext.Hobbies.FirstOrDefault(h => h.HobbyId == hobbyId);
-                editedHobby.Name = hobby.Name;
-                editedHobby.Description = hobby.Description;
-                dbContext.SaveChanges();
-                return RedirectToAction("Hobbies");
-            }
-
-            return View("EditHobby");
-        }
+    }   
 }
 
