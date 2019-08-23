@@ -1,0 +1,21 @@
+@model Hobby
+
+    <h1>Edit This Hobby</h1>
+    <a href="/dashboard">View All Hobbies</a>
+    <a href="/logout">Log Out</a><br><br>
+        
+<form asp-action="postEditHobby" asp-controller="Home" method="POST">
+    
+    <span asp-validation-for="Name"></span>
+    <label asp-for="Name">Title</label>
+    <input asp-for="Name">
+
+    <span asp-validation-for="Description"></span>
+    <label asp-for="Description">Description</label>
+    <textarea asp-for="Description"></textarea>
+
+    <input type="submit" value="Edit">
+
+</form>
+
+<img src="~/images/fixing.jpg" />

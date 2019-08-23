@@ -6,6 +6,11 @@
 
 <h2><i><b>@Model.Name</i></b></h2>
 
+@{
+        if(@ViewBag.UserId == @ViewBag.CurrentHobby.UserId){
+            <b><a href ="/hobby/edit/@ViewBag.CurrentHobby.HobbyId" class="Button">Edit Hobby</a></b>
+        } 
+    }
 <h2 style = "text-decoration: underline">Description</h2>
 <p>@Model.Description</p>
 
