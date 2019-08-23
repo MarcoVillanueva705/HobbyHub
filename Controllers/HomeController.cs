@@ -201,6 +201,21 @@ namespace HobbyHub.Controllers
             return View(CurrentHobby);
         }
 
+        [HttpPost("hobby/edit/{hobbyId}/post")]
+        public IActionResult PostEditHobby(int hobbyId, Hobby hobby)
+        {
+           if(ModelState.IsValid)
+            {
+                int? sessionUser = HttpContext.Session.GetInt32("ID");
+                Hobby editedHobby = dbContext.hobbies.FirstOrDefault(h => h.HobbyId == hobbyId);
+                editedHobby.Name = hobby.Name;
+                editedHobby.Description = hobby.Description;
+                dbContext.SaveChanges();
+                return RedirectToAction("Dashboard");
+            }
+            return View("EditHobby");
+        }
+
         [HttpGet("delete/{hobbyId}")]
         public IActionResult Delete(int hobbyId)
         {
